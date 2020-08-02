@@ -1,5 +1,5 @@
+#!/usr/bin/env python3   
 import time
-from rpi_ws281x import *
 from neopixel import *
 
 LED_COUNT      = 6      # Number of LED pixels.
