@@ -88,7 +88,7 @@ def change_led(id, r, g, b):
 print("connecting to devices..")
 vehicle = connect("0.0.0.0:14550", wait_ready=True)
 
-compass_degree = 9 # !UWB system degree to truth north, this is very important before flight!
+compass_degree = 10 # !UWB system degree to truth north, this is very important before flight!
 vehicle.parameters.set("COMPASS_DEC", math.radians(compass_degree))
 
 TASK_LIST = [
@@ -98,6 +98,12 @@ TASK_LIST = [
         [[[2.5, 2, 1.5], [0,0,255]], [[3.5, 3, 2], [0,0,255]]],
         [[[2, 2, 1.5], [255,255,255]], [[3, 3, 2], [255,255,255]]],
         ]
+
+set_vehicles_to_guided_mode() #change to GUIDED MODE first
+
+time.sleep(1)
+vehicles_takeoff() # takeoff!
+time.sleep(3)
 
 for task in TASK_LIST:
     for index, item in enumerate(task):
@@ -111,3 +117,5 @@ for task in TASK_LIST:
 
 #  fly_to_system_position(1, 3, 3, 1.5)
 #  change_led(2, 255,0,0)
+
+land()
